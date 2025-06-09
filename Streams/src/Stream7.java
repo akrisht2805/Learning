@@ -1,7 +1,4 @@
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -31,6 +28,7 @@ public class Stream7 {
         public String getName() { return name; }
         public String getCategory() { return category; }
         public double getPrice() { return price; }
+
     }
 
 

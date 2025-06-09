@@ -1,14 +1,12 @@
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Optional;
 
 /**
- * You have a list of employee records, each containing id, name, department, and salary. Using Java Streams:
- * Group employees by department.
- * Then, within each department, find the employee with the highest salary.
+ * Write a code to find the employee who is having third-largest salary who's name started with A.
  */
-
-public class Stream4 {
-
+public class Stream8 {
     public static class Employee {
         private int id;
         private String name;
@@ -51,16 +49,21 @@ public class Stream4 {
                 new Employee(1, "Alice", "Engineering", 95000),
                 new Employee(2, "Bob", "Engineering", 87000),
                 new Employee(3, "Charlie", "HR", 67000),
-                new Employee(4, "David", "HR", 72000),
-                new Employee(5, "Eve", "Sales", 88000)
+                new Employee(4, "Akrisht", "HR", 72000),
+                new Employee(5, "Eve", "Sales", 88000),
+                new Employee(6, "Aric", "Engineering", 85000),
+                new Employee(7, "Anil", "Engineering", 89000)
         );
 
-        Map<String, Optional<Employee>> res = employees.stream().
-                collect(Collectors.groupingBy(employee -> employee.department, Collectors.maxBy(Comparator.comparingDouble(emp -> emp.salary))));
 
-        res.forEach((key, value) -> {
-            System.out.println(key + " -> " + value);
-        });
+        System.out.println(
+                employees.stream()
+                        .filter(employee -> employee.getName().startsWith("A"))
+                        .sorted(Comparator.comparing((Employee emp) -> emp.getSalary()).reversed()) // or use Employee::getSalary
+                        .skip(2)
+                        .findFirst()
+        );
+
 
 
     }
